@@ -9,25 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps: 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - name: Install dependencies
         run: npm install
       - name: Lint
         run: npm run eslint
-      - name: build from resource
-        run: npm install --build-from-resource
       - name : Build
         run: npm run build 
       - name: Test
         run: npm test
-      - name: cypress open
-        run: cypress open
       - name: test e2e
         uses: cypress-io/github-action@v2
         with: 
